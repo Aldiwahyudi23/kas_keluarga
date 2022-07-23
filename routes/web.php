@@ -46,13 +46,17 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route untuk user Admin
-Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ketua']], function () {
+Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ketua,Anggota']], function () {
 //Data Keluarga
     Route::resource('keluarga',DataKeluargaController::class);
     Route::get('/keluargas/detail/{id}',[DataKeluargaController::class,'detail'])->name('keluarga.detail');
     Route::get('/keluargas/trash/',[DataKeluargaController::class,'trash'])->name('keluarga.trash');
     Route::post('/anggots/kill/{id}',[DataKeluargaController::class,'kill'])->name('keluarga.kill');
     Route::get('/keluargas/restore/{id}',[DataKeluargaController::class,'restore'])->name('keluarga.restore');
+});
+
+//Route untuk user Admin
+Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ketua']], function () {
 
 // Data Anggota atau User
     Route::resource('anggota',AnggotaController::class);

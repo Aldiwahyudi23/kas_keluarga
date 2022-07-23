@@ -70,7 +70,7 @@ Pengajuan
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <th>Pekerjaan</th>
+                                        <th>Status</th>
                                         <td>{{$data_keluarga->pekerjaan}}</td>
                                     </tr>
                                     <tr>

@@ -81,7 +81,9 @@
                                                                 <td>{{$data->nama}}</td>
                                                                 <td>{{$data->hubungan}} {{$data->anak_ke}} Dari {{$data->nama_hubungan}}</td>
                                                                 <td>
+                                                                    @if (auth()->user()->role == 'Anggota')
                                                                     <a href="{{route('keluarga.show',Crypt::encrypt($data->id))}}" class=""><i class="nav-icon fas fa-book"></i></a>
+                                                                    @else
                                                                     <a href="{{route('keluarga.edit',Crypt::encrypt($data->id))}}" class=""><i class="nav-icon fas fa-pencil-alt"></i></a>
                                                                     @if (auth()->user()->role == 'Admin')
                                                                     <form action="{{route('keluarga.destroy',Crypt::encrypt($data->id))}}" method="POST">
@@ -89,6 +91,7 @@
                                                                         {{csrf_field()}}
                                                                         <button class="btn btn-link fas fa-trash " onclick="return confirm('Leres bade ngahapus data anu namina {{$data->nama}}  ?')"><i class="nav-icon fas fa-trash "></i></button>
                                                                     </form>
+                                                                    @endif
                                                                     @endif
                                                                 </td>
                                                             </tr>
@@ -128,7 +131,6 @@
 @endsection
 @section('script')
 <script>
-
     $("#MasterData").addClass("active");
     $("#liMasterData").addClass("menu-open");
     $("#DataKeluarga").addClass("active");

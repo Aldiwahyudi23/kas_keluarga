@@ -59,7 +59,9 @@ Pengajuan
                                     </tr>
                                     <tr>
                                         <th style="width:50%">Program</th>
-                                        <td>{{ $data_anggota->program->nama_program}}, ({{ $data_anggota->role}})</td>
+                                        <td>{{ $data_anggota->program1}},({{ $data_anggota->role}})</td>
+                                        <td>{{ $data_anggota->program2}}</td>
+                                        <td>{{ $data_anggota->program3}}</td>
                                     </tr>
                                     <tr>
                                 </table>

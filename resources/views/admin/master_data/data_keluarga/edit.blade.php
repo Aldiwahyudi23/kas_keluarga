@@ -101,7 +101,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nik">NIK</label>
-                                                    <input type="text" id="nik" name="nik" value="{{ $data_keluarga->nik}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror" disabled>
+                                                    <input type="text" id="nik" name="nik" value="{{ $data_keluarga->nik}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror" >
                                                     @error('nik')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
                                                 </div>
                                                 <div class="form-group">
@@ -126,12 +126,12 @@
                                                 </div>
                                                 
                                                 <div class="form-group">
-                                                    <label for="pekerjaan">Jenis Kelamin</label>
+                                                    <label for="pekerjaan">Status</label>
                                                     <select id="pekerjaan" name="pekerjaan" class="select2bs4 form-control @error('pekerjaan') is-invalid @enderror" value=" {{old('pekerjaan')}} ">
                                                         @if($data_keluarga->pekerjaan == true)
                                                         <option value="{{$data_keluarga->pekerjaan}}">{{$data_keluarga->pekerjaan}}</option>
                                                         @endif
-                                                        <option value="">-- Pilih Jenis Kelamin --</option>
+                                                        <option value="">-- Pilih Status --</option>
                                                         <option value="Sekolah">Sekolah</option>
                                                         <option value="Bekerja"> Bekerja</option>
                                                         <option value="Irt"> Ibu Rumah Tangga</option>

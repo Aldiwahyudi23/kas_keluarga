@@ -98,6 +98,11 @@
 
 
                                 <tr>
+                                    <td>Nama</td>
+                                    <td>:</td>
+                                    <td>{{$data_role_program->nama}}</td>
+                                </tr>
+                                <tr>
                                     <td>Ketua</td>
                                     <td>:</td>
                                     <td>Supriatna</td>
@@ -121,17 +126,17 @@
                                 <tr>
                                     <td>Program</td>
                                     <td>:</td>
-                                    <td>* {{$data_role_program->program1}}</td>
+                                    <td>* {{$id->program1}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>* {{$data_role_program->program2}}</td>
+                                    <td>* {{$id->program2}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>* {{$data_role_program->program3}}</td>
+                                    <td>* {{$id->program3}}</td>
                                 </tr>
 
                             </table>

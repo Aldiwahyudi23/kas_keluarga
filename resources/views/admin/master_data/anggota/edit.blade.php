@@ -106,18 +106,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="program_id">Program</label>
-                                                    <select id="program_id" name="program_id" class="select2bs4 form-control @error('program_id') is-invalid @enderror">
-                                                        @if (old('program_id', $data_anggota->program_id) == true)
-                                                        <option value="{{old('program_id',$data_anggota->program_id)}}">{{old('nama_hubungan', $data_anggota->program->nama_program)}}</option>
-                                                        @endif
-                                                        <option value="">-- Pilih Program --</option>
-                                                        @foreach ($data_program as $data)
-                                                        <option value="{{$data->id}}"> {{$data->nama_program}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label for="role_id">Role</label>
                                                     <select id="role_id" name="role_id" class="select2bs4 form-control @error('role_id') is-invalid @enderror">
@@ -184,7 +173,7 @@
                                                             <tr>
                                                                 <td>{{$no}}</td>
                                                                 <td>{{$data->name}}</td>
-                                                                <td>{{$data->program->nama_program}}</td>
+                                                                <td>{{$data->program1}} <br> {{$data->program2}} <br> {{$data->program3}}</td>
                                                                 <td>{{$data->role}}</td>
                                                                 <td>
                                                                     <form action="{{route('anggota.destroy',Crypt::encrypt($data->id))}}" method="POST">

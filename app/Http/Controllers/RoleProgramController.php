@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use App\Models\AnggotaKeluarga;
 use App\Models\Program;
 use App\Models\RoleProgram;
 use App\Models\User;
@@ -20,11 +21,11 @@ class RoleProgramController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $data_role_program = User::find($id);
+        $id = User::find(Auth::user()->id);
+        $data_role_program = AnggotaKeluarga::find($id->keluarga_id);
         $data_program = Program::all();
 
-        return view('admin.master_data.anggota.role_program.index', compact('data_role_program','data_program'));
+        return view('admin.master_data.anggota.role_program.index', compact('data_role_program','data_program', 'id'));
     }
 
     /**
@@ -54,22 +55,28 @@ class RoleProgramController extends Controller
             ]
             );
 
-            $anggota = DB::table('keluargas')->join('users','users.keluarga_id','=','keluargas.id')->get();
-            $user = $anggota->first();
+        $id = User::find(Auth::user()->id);
+        $user = AnggotaKeluarga::find($id->keluarga_id);
+
             if ($user->pekerjaan == "Bekerja"){
                 if ($request->program == 1){
-                $data = Anggota::find(Auth::user()->id);
+                $data = User::find(Auth::user()->id);
                         $data->program1 = "Kas";
                         $data->update();
                         return redirect()->back()->with('sukses','Program Kas Keluraga atos di pilih, MANTAP Ayeunamah anjen wajib iuran bulanan Rp. 50.000,00 ');
-                    }
-            } elseif ($request->program == 2) {
-                $data = Anggota::find(Auth::user()->id);
+                    }else{
+                $data = User::find(Auth::user()->id);
                 $data->program2 = "Tabungan";
                 $data->update();
-                return redirect()->back()->with('sukses', 'Progra atos di pilih, MANTAP');
+                return redirect()->back()->with('sukses', 'Mantap jaya sukses terus, wilujeng menabung, tabungan atos aktif, tong hilap nabung');
+                    }
+            } elseif ($request->program == 2) {
+                $data = User::find(Auth::user()->id);
+                $data->program2 = "Tabungan";
+                $data->update();
+                return redirect()->back()->with('sukses', 'Mantap jaya sukses terus, wilujeng menabung, tabungan atos aktif, tong hilap nabung');
             
-        }else{
+            }else{
             return redirect()->back()->with('kuning','Punten Saudara/saudari keluarga Alm. Ma haya. Program Kas Keluarga kanggo anu anggota na atos damel, pami teu acan damel teu acan tiasa ngiringan heula. Mangga seer nabung we supados aya bekel');
 
         }

@@ -124,12 +124,12 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pekerjaan">Jenis Kelamin</label>
+                                                    <label for="pekerjaan">Status</label>
                                                     <select id="pekerjaan" name="pekerjaan" class="select2bs4 form-control @error('pekerjaan') is-invalid @enderror" value=" {{old('pekerjaan')}} ">
                                                         @if(old('pekerjaan') == true)
                                                         <option value="{{old('pekerjaan')}}">{{old('pekerjaan')}}</option>
                                                         @endif
-                                                        <option value="">-- Pilih Jenis Kelamin --</option>
+                                                        <option value="">-- Pilih Status --</option>
                                                         <option value="Sekolah">Sekolah</option>
                                                         <option value="Bekerja"> Bekerja</option>
                                                         <option value="Irt"> Ibu Rumah Tangga</option>

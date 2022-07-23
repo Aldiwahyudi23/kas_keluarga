@@ -309,8 +309,8 @@ class DataKeluargaController extends Controller
 // Profile
     public function profile() 
     {
-        $id = Auth::user()->id ;
-        $data_keluarga = AnggotaKeluarga::find($id);
+        $id = User::find(Auth::user()->id) ;
+        $data_keluarga = AnggotaKeluarga::find($id->keluarga_id);
 
         return view('admin.profile.index',compact('data_keluarga'));
     }
