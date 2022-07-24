@@ -74,7 +74,7 @@
                                 <table class="table" style="margin-top: -21px;">
                                     <tr>
                                         <td width="50"><i class="nav-icon fas fa-user-edit"></i></td>
-                                        <td> <a href="{{ route('profile.edit',Crypt::encrypt(Auth::user()->id) ) }}" class="text-dark">Edit Data Diri<a></td>
+                                        <td> <a href="{{ route('profile.edit',Crypt::encrypt($keluarga->id) ) }}" class="text-dark">Edit Data Diri<a></td>
                                     </tr>
                                     <tr>
                                         <td width="50"><img src="{{ asset( Auth::user()->foto) }}" class="img-fluid img-circle" alt="User profile picture"></td>

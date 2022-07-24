@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnggotaKeluarga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pengumuman;
@@ -42,7 +43,8 @@ class HomeController extends Controller
     }
 
     public function peraturan (){
-        return view('admin.peraturan.index');
+        $keluarga = AnggotaKeluarga::fint(Auth::user()->id);
+        return view('admin.peraturan.index',compact('$keluarga'));
     }
 
 }

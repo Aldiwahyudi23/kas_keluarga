@@ -80,15 +80,25 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="pekerjaan">Pekerjaan</label>
-                                <input type="text" id="pekerjaan" name="pekerjaan" value="{{ $data_keluarga->pekerjaan }}" placeholder="Esian Sesuai pekerjaan ayeuna" class="form-control @error('pekerjaan') is-invalid @enderror">
+                                <label for="pekerjaan">Status</label>
+                                <select id="pekerjaan" name="pekerjaan" class="select2bs4 form-control @error('pekerjaan') is-invalid @enderror" value=" {{old('pekerjaan')}} ">
+                                    @if($data_keluarga->pekerjaan == true)
+                                    <option value="{{$data_keluarga->pekerjaan}}">{{$data_keluarga->pekerjaan}}</option>
+                                    @endif
+                                    <option value="">-- Pilih Status --</option>
+                                    <option value="Sekolah">Sekolah</option>
+                                    <option value="Bekerja"> Bekerja</option>
+                                    <option value="Irt"> Ibu Rumah Tangga</option>
+                                    <option value="TBekerja"> Tidak Bekerja</option>
+                                    <option value="TSekolah"> Tidak Sekolah</option>
+                                </select>
                                 @error('pekerjaan')
                                 <div class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
-                            
+
                         </div>
                     </div>
 
