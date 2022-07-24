@@ -74,7 +74,7 @@
                                 <table class="table" style="margin-top: -21px;">
                                     <tr>
                                         <td width="50"><i class="nav-icon fas fa-user-edit"></i></td>
-                                        <td> <a href="{{ route('profile.edit',Crypt::encrypt($keluarga->id) ) }}" class="text-dark">Edit Data Diri<a></td>
+                                        <td> <a href="{{ route('profile.edit',Crypt::encrypt($keluarga->keluarga_id) ) }}" class="text-dark">Edit Data Diri<a></td>
                                     </tr>
                                     <tr>
                                         <td width="50"><img src="{{ asset( Auth::user()->foto) }}" class="img-fluid img-circle" alt="User profile picture"></td>
@@ -99,9 +99,12 @@
                                         <td> <a href="{{ route('pengaturan.email') }}" class="text-dark">Ubah Email<a></td>
                                     </tr>
                                     <tr>
+                                        <a href="{{ route('pengaturan.password') }}" class="text-dark">
                                         <td width="50"><i class="nav-icon fas fa-key"></i></td>
-                                        <td><a href="{{ route('pengaturan.password') }}" class="text-dark">Ubah Password</a></td>
-                                    </tr>
+                                            <td>Ubah Password
+                                                </td>
+                                            </a>
+                                            </tr>
                                 </table>
                             </div>
                         </div>
@@ -112,10 +115,10 @@
                             <div class="card-body">
                                 <table class="table" style="margin-top: -21px;">
                                     <tr>
-                                        <td width="50"><i class="nav-icon fas fa-progress"></i></td>
+                                        <td width="50"><i class="nav-icon fas fa-list"></i></td>
                                         <td> <a href="/roleprogram " class="text-dark">Program<a></td>
                                     </tr>
-                                    
+
                                 </table>
                             </div>
                         </div>

@@ -101,7 +101,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nik">NIK</label>
-                                                    <input type="text" id="nik" name="nik" value="{{ $data_keluarga->nik}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror" >
+                                                    <input type="text" id="nik" name="nik" value="{{ $data_keluarga->nik}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
                                                     @error('nik')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
                                                 </div>
                                                 <div class="form-group">
@@ -124,7 +124,7 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="pekerjaan">Status</label>
                                                     <select id="pekerjaan" name="pekerjaan" class="select2bs4 form-control @error('pekerjaan') is-invalid @enderror" value=" {{old('pekerjaan')}} ">
@@ -167,7 +167,7 @@
                                             @endif
                                             <option value="">-- Pilih Nama --</option>
                                             @foreach ($data_keluargas as $data)
-                                            <option value="{{$data->nama}}"> {{$data->nama}}</option>
+                                            <option value="{{$data->id}}"> {{$data->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -198,7 +198,7 @@
                         <div class="card">
                             <div class="card-header bg-light p-2">
                                 <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active btn-sm" href="#setor" data-toggle="tab"><i></i> Data anggota</a></li>
+                                    <li class="nav-item"><a class="nav-link active btn-sm" href="#setor" data-toggle="tab"><i></i>Edit Data anggota</a></li>
                                     <li class="nav-item"><a class="nav-link btn-sm" href="#anggota" data-toggle="tab"><i></i> Deskripsi</a></li>
                                 </ul>
                             </div>
@@ -209,13 +209,12 @@
                                         <div class="row">
                                             <div class="row table-responsive">
                                                 <div class="col-12">
-                                                    <table class="table table-hover table-head-fixed" id='tabelAgendaMasuk'>
+                                                    <table class="table table-hover table-head-fixed" id='example1'>
                                                         <thead>
                                                             <tr class="bg-light">
                                                                 <th>No.</th>
                                                                 <th>Nama</th>
-                                                                <th>Status Kekeluargaan</th>
-                                                                <th>Aksi</th>
+                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -224,23 +223,17 @@
                                                             <?php $no++; ?>
                                                             <tr>
                                                                 <td>{{$no}}</td>
-                                                                <td>{{$data->nama}}</td>
-                                                                <td>{{$data->anak_ke}} dari {{$data->orang_tua}}</td>
+                                                                <td><a href="{{route('keluarga.show',Crypt::encrypt($data->id))}}" class="">{{$data->nama}}</a></td>
+
                                                                 <td>
-                                                                    <a href="{{route('keluarga.show',Crypt::encrypt($data->id))}}" class=""><i class="nav-icon fas fa-book"></i></a>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="{{route('keluarga.edit',Crypt::encrypt($data->id))}}" class=""><i class="nav-icon fas fa-pencil-alt"></i></a>
-                                                                </td>
-                                                                <td>
-                                                                    @if (auth()->user()->role == 'Admin')
+
                                                                     @if (auth()->user()->role == 'Admin')
                                                                     <form action="{{route('keluarga.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                         @method('delete')
                                                                         {{csrf_field()}}
                                                                         <button class="btn btn-link fas fa-trash " onclick="return confirm('Leres bade ngahapus data anu namina {{$data->nama}}  ?')"><i class="nav-icon fas fa-trash "></i></button>
                                                                     </form>
-                                                                    @endif
+
                                                                     @endif
                                                                 </td>
                                                             </tr>

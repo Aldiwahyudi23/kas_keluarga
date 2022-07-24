@@ -83,6 +83,7 @@ class DataKeluargaController extends Controller
             $file = $request->file('foto');
             $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/img/profile'), $nama);
+            $nameFoto ="/img/profile/$nama";
         } else {
             if ($request->jk == 'Laki-Laki') {
                 $nameFoto = 'img/keluarga/52471919042020_male.jpg';
@@ -105,7 +106,7 @@ class DataKeluargaController extends Controller
             $data->hubungan      = $request->hubungan;
             $data->pekerjaan      = $request->pekerjaan;
             $data->anak_ke      = $request->anak_ke;
-            $data->foto      = "/img/profile/$nama";
+            $data->foto      = $nameFoto;
 
             $data->save();
 
@@ -139,12 +140,11 @@ class DataKeluargaController extends Controller
      */
     public function detail($id)
     {
-        $data = AnggotaKeluarga::all();
-        $data_keluarga_role = $data->groupBy('nama_hubungan');
-        $data_keluarga = AnggotaKeluarga::where('nama_hubungan',$id)->get();
-        $data_hubungan = $data_keluarga->groupBy('nama_hubungan');
+        $data_anggota = AnggotaKeluarga::find($id);
 
-        return view('admin.master_data.data_keluarga.detail',compact('data_keluarga','data_hubungan','data_keluarga_role'));
+        $data_keluarga = AnggotaKeluarga::where('nama_hubungan',$id)->get();
+
+        return view('admin.master_data.data_keluarga.detail',compact('data_keluarga','data_anggota'));
     }
 
     /**

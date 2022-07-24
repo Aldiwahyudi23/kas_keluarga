@@ -43,8 +43,8 @@ class HomeController extends Controller
     }
 
     public function peraturan (){
-        $keluarga = AnggotaKeluarga::fint(Auth::user()->id);
-        return view('admin.peraturan.index',compact('$keluarga'));
+        $keluarga = User::find(Auth::user()->id);
+        return view('admin.peraturan.index',compact('keluarga'));
     }
 
 }

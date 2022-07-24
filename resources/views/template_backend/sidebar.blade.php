@@ -291,7 +291,7 @@ $anggaran = Anggaran::all();
                 @endif
                 <li class="nav-item">
                     <a href="/peraturan" class="nav-link" id="Peraturan">
-                        <i class="nav-icon fas fa-setting"></i>
+                        <i class="nav-icon fas fa-cogs"></i>
                         <p>Peraturan</p>
                     </a>
                 </li>

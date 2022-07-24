@@ -206,6 +206,25 @@ class PemasukanController extends Controller
         return view('admin.pemasukan.lihat_semua', compact('data_pemasukan'));
     }
 
+    public function detail_anggota_kas($id) {
+        $id = Crypt::decrypt($id);
+        $user = User::find($id);
+        $data_anggota = AnggotaKeluarga::find($user->keluarga_id);
+        $data_setora = Pemasukan::where('anggota_id',$id)->orderBy('anggota_id')->get();
+        $pemasukan_anggota_detail = $data_setora->where('kategori', 'Kas');
+
+        return view('admin.pemasukan.detail_pemasukan_anggota',compact('pemasukan_anggota_detail','data_anggota','user'));
+    }
+    public function detail_anggota_tabungan($id) {
+        $id = Crypt::decrypt($id);
+        $user = User::find($id);
+        $data_anggota = AnggotaKeluarga::find($user->keluarga_id);
+        $data_setora = Pemasukan::where('anggota_id',$id)->orderBy('anggota_id')->get();
+        $pemasukan_anggota_detail = $data_setora->where('kategori', 'Tabungan');
+
+        return view('admin.pemasukan.detail_pemasukan_anggota',compact('pemasukan_anggota_detail','data_anggota','user'));
+    }
+
     public function laporan(){
         return view('admin.laporan.index');
     }

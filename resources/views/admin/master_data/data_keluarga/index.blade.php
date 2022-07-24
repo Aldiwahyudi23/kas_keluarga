@@ -165,7 +165,7 @@
                                             @endif
                                             <option value="">-- Pilih Nama --</option>
                                             @foreach ($data_keluarga as $data)
-                                            <option value="{{$data->nama}}"> {{$data->nama}}</option>
+                                            <option value="{{$data->id}}"> {{$data->nama}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -217,9 +217,10 @@
                                                             @foreach($data_keluarga_role as $data=>$role)
                                                             <?php $no++; ?>
                                                             <tr>
+                                                                
                                                                 <td>{{$no}}</td>
                                                                 <td> <a href="{{Route('keluarga.detail',$data)}} ">{{$data}}</a></td>
-                                                                <td>{{$role->count()}}</td>
+                                                                <td> <a href="{{Route('keluarga.detail',$data)}} ">{{$role->count()}}</a></td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>

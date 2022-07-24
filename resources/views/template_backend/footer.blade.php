@@ -23,7 +23,8 @@
             @endif
             <div class="col-3">
                 <center>
-                    <a href="/profile"><i class="nav-icon fas fa-user"></i> <br> &nbsp; Saya </a>
+                    <a href="/profile"><img src="{{ asset( Auth::user()->foto) }}" width="45px" height="45px" alt="Saya" class="brand-image img-circle elevation-3">
+                     </a>
                 </center>
             </div>
 

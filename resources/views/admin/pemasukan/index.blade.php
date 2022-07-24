@@ -421,7 +421,7 @@
                                         <div class="row">
                                             <div class="row table-responsive">
                                                 <div class="col-12">
-                                                    <table class="table table-hover table-head-fixed" id='example1'>
+                                                    <table class="table table-hover table-head-fixed" id='exampls'>
                                                         <a href="{{Route('pemasukan.lihat')}}">Lihat semua </a>
                                                         <thead>
                                                             <tr class="bg-light">
@@ -485,7 +485,7 @@
                                         <div class="row">
                                             <div class="row table-responsive">
                                                 <div class="col-12">
-                                                    <table class="table table-hover table-head-fixed" id='example1'>
+                                                    <table class="table table-hover table-head-fixed" id='exampl'>
                                                         <thead>
                                                             <tr class="bg-light">
                                                                 <th>No.</th>
@@ -531,7 +531,7 @@
                                         <div class="row">
                                             <div class="row table-responsive">
                                                 <div class="col-12">
-                                                    <table class="table table-hover table-head-fixed" id='example1'>
+                                                    <table class="table table-hover table-head-fixed" id='exampl'>
                                                         <thead>
                                                             <tr class="bg-light">
                                                                 <th>No.</th>

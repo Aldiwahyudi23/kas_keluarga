@@ -195,7 +195,7 @@
                                                                     </div>
                                                                     <input value="{{old('jumlah')}}" name="jumlah" type="number" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah">
                                                                     <input type="hidden" name="kategori" id="kategori" value="Setor_Tunai">
-                                                                    <input type="hidden" name="pembayaran"  value="Transfer">
+                                                                    <input type="hidden" name="pembayaran" value="Transfer">
                                                                     <input type="hidden" name="anggota_id" id="anggota_id" value="{{Auth::id()}}">
                                                                     <div class="input-group-append">
                                                                         <span class="input-group-text">.00</span>
@@ -562,7 +562,7 @@
                                                 <div class="row">
                                                     <div class="row table-responsive">
                                                         <div class="col-12">
-                                                            <table class="table table-hover table-head-fixed" id='example1'>
+                                                            <table class="table table-hover table-head-fixed" id='example'>
                                                                 <thead>
                                                                     <tr class="bg-light">
                                                                         <th>No.</th>
@@ -609,7 +609,7 @@
                                                 <div class="row">
                                                     <div class="row table-responsive">
                                                         <div class="col-12">
-                                                            <table class="table table-hover table-head-fixed" id='example1'>
+                                                            <table class="table table-hover table-head-fixed" id='example'>
                                                                 <thead>
                                                                     <tr class="bg-light">
                                                                         <th>No.</th>
@@ -789,7 +789,9 @@
                                                                         <th>No.</th>
                                                                         <th>Nama</th>
                                                                         <th>Kas</th>
+                                                                        @if (Auth::user()->role == "Admin" || Auth::user()->role == "Bendahara" || Auth::user()->role == "Sekertaris")
                                                                         <th>Tabungan</th>
+                                                                        @endif
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -815,8 +817,10 @@
                                                                         $jumlah = $total_setor;
                                                                         $jumlah_tabungan = $total_tabungan;
                                                                         ?>
-                                                                        <td>{{ "Rp " . number_format( $jumlah,2,',','.') }}</td>
-                                                                        <td>{{ "Rp " . number_format( $jumlah_tabungan,2,',','.') }}</td>
+                                                                        <td> <a href="{{route('detail.kas',Crypt::encrypt($anggota->id))}}"> {{ "Rp " . number_format( $jumlah,2,',','.') }} </a></td>
+                                                                        @if (Auth::user()->role == "Admin" || Auth::user()->role == "Bendahara" || Auth::user()->role == "Sekertaris")
+                                                                        <td><a href="{{route('detail.anggota.tabungan',Crypt::encrypt($anggota->id))}}">{{ "Rp " . number_format( $jumlah_tabungan,2,',','.') }} </a></td>
+                                                                        @endif
                                                                     </tr>
                                                                     @php
                                                                     $total += $jumlah;
@@ -858,7 +862,7 @@
             var kel = $('#pembayaran option:selected').val();
             if (kel == "Transfer") {
                 $("#noId").html('<div class="form-group"><label for="account-company">Bukti Transfer</label><input type="file" class="form-control" name="foto" id="foto" required /><span class="text-danger" style="font-size: 10px">Harap kirim tanda bukti transferan.</span></div>');
-            } 
+            }
         });
     });
     $(document).ready(function() {
@@ -866,7 +870,7 @@
             var kel = $('#pembayaran1 option:selected').val();
             if (kel == "Transfer") {
                 $("#naId").html('<div class="form-group"><label for="account-company">Bukti Transfer</label><input type="file" class="form-control" name="foto" id="foto" required /><span class="text-danger" style="font-size: 10px">Harap kirim tanda bukti transferan.</span></div>');
-            } 
+            }
         });
     });
     $(document).ready(function() {
@@ -874,7 +878,7 @@
             var kel = $('#pembayaran2 option:selected').val();
             if (kel == "Transfer") {
                 $("#nuId").html('<div class="form-group"><label for="account-company">Bukti Transfer</label><input type="file" class="form-control" name="foto" id="foto" required /><span class="text-danger" style="font-size: 10px">Harap kirim tanda bukti transferan.</span></div>');
-            } 
+            }
         });
     });
     $("#Pemasukan").addClass("active");

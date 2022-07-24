@@ -47,13 +47,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Route untuk user Admin
 Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ketua,Anggota']], function () {
-//Data Keluarga
-    Route::resource('keluarga',DataKeluargaController::class);
-    Route::get('/keluargas/detail/{id}',[DataKeluargaController::class,'detail'])->name('keluarga.detail');
-    Route::get('/keluargas/trash/',[DataKeluargaController::class,'trash'])->name('keluarga.trash');
-    Route::post('/anggots/kill/{id}',[DataKeluargaController::class,'kill'])->name('keluarga.kill');
-    Route::get('/keluargas/restore/{id}',[DataKeluargaController::class,'restore'])->name('keluarga.restore');
-    
+    //Data Keluarga
+        Route::resource('keluarga',DataKeluargaController::class);
+        Route::get('/keluargas/detail/{id}',[DataKeluargaController::class,'detail'])->name('keluarga.detail');
+        Route::get('/keluargas/trash/',[DataKeluargaController::class,'trash'])->name('keluarga.trash');
+        Route::post('/anggots/kill/{id}',[DataKeluargaController::class,'kill'])->name('keluarga.kill');
+        Route::get('/keluargas/restore/{id}',[DataKeluargaController::class,'restore'])->name('keluarga.restore');
+        
     // Data Anggota atau User
         Route::resource('anggota',AnggotaController::class);
         Route::get('/anggotas/trash/', [AnggotaController::class, 'trash'])->name('anggota.trash');
@@ -61,6 +61,12 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
         Route::get('/anggotas/restore/{id}', [AnggotaController::class, 'restore'])->name('anggota.restore');
         Route::post('/anggotas/update/foto/{id}',[AnggotaController::class,'update_foto'])->name('anggota.update.foto');
         
+        // Data Anggaran
+        Route::resource('anggaran',AnggaranController::class);
+        Route::GET('/anggarans/detail/{id}', [AnggaranController::class, 'detail'])->name('anggaran.detail');
+        Route::get('/anggarans/trash/', [AnggaranController::class, 'trash'])->name('anggaran.trash');
+        Route::post('/anggarans/kill/{id}', [AnggaranController::class, 'kill'])->name('anggaran.kill');
+        Route::get('/anggarans/restore/{id}', [AnggaranController::class, 'restore'])->name('anggaran.restore');
 });
 
 //Route untuk user Admin
@@ -72,12 +78,6 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
     Route::post('/programs/kill/{id}', [ProgramController::class, 'kill'])->name('program.kill');
     Route::get('/programs/restore/{id}', [ProgramController::class, 'restore'])->name('program.restore');
   
-    // Data Anggaran
-    Route::resource('anggaran',AnggaranController::class);
-    Route::GET('/anggarans/detail/{id}', [AnggaranController::class, 'detail'])->name('anggaran.detail');
-    Route::get('/anggarans/trash/', [AnggaranController::class, 'trash'])->name('anggaran.trash');
-    Route::post('/anggarans/kill/{id}', [AnggaranController::class, 'kill'])->name('anggaran.kill');
-    Route::get('/anggarans/restore/{id}', [AnggaranController::class, 'restore'])->name('anggaran.restore');
   
     // Data Anggaran
     Route::resource('role',RoleController::class);
@@ -110,6 +110,8 @@ Route::get('/pemasukans/trash/', [PemasukanController::class, 'trash'])->name('p
 Route::post('/pemasukans/kill/{id}', [PemasukanController::class, 'kill'])->name('pemasukan.kill');
 Route::get('/pemasukans/restore/{id}', [PemasukanController::class, 'restore'])->name('pemasukan.restore');
 Route::get('/pemasukans/lihat', [PemasukanController::class, 'lihat'])->name('pemasukan.lihat');
+Route::get('/pemasukans/detail/kas/{id}', [PemasukanController::class, 'detail_anggota_kas'])->name('detail.anggota.kas');
+Route::get('/pemasukans/detail/tabungan/{id}', [PemasukanController::class, 'detail_anggota_tabungan'])->name('detail.anggota.tabungan');
 
 // Bayar Pinjaman
 Route::resource('bayar/pinjaman',BayarPinjamanController::class);
@@ -130,9 +132,5 @@ Route::get('/peraturan',[HomeController::class,'peraturan']);
 Route::resource('roleprogram',RoleProgramController::class);
 
 // frontend
-Route::resource('kegiatan',KegiatanController::class);
-Route::resource('berita',BeritaController::class);
-Route::resource('event',EventsController::class);
-Route::resource('video',VideoController::class);
-Route::resource('slid',ImageSliderController::class);
+
 Route::resource('beranda',FrontEndController::class);
