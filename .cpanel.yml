@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/u1021663/public_html/kaskeluarga
+    - export DEPLOYPATH=/home/u1021663/public_html/keluargamahaya.website
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R bootstrap $DEPLOYPATH
     - /bin/cp -R config $DEPLOYPATH
