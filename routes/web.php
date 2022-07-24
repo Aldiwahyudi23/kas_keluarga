@@ -53,18 +53,18 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
     Route::get('/keluargas/trash/',[DataKeluargaController::class,'trash'])->name('keluarga.trash');
     Route::post('/anggots/kill/{id}',[DataKeluargaController::class,'kill'])->name('keluarga.kill');
     Route::get('/keluargas/restore/{id}',[DataKeluargaController::class,'restore'])->name('keluarga.restore');
+    
+    // Data Anggota atau User
+        Route::resource('anggota',AnggotaController::class);
+        Route::get('/anggotas/trash/', [AnggotaController::class, 'trash'])->name('anggota.trash');
+        Route::post('/anggots/kill/{id}', [AnggotaController::class, 'kill'])->name('anggota.kill');
+        Route::get('/anggotas/restore/{id}', [AnggotaController::class, 'restore'])->name('anggota.restore');
+        Route::post('/anggotas/update/foto/{id}',[AnggotaController::class,'update_foto'])->name('anggota.update.foto');
+        
 });
 
 //Route untuk user Admin
 Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ketua']], function () {
-
-// Data Anggota atau User
-    Route::resource('anggota',AnggotaController::class);
-    Route::get('/anggotas/trash/', [AnggotaController::class, 'trash'])->name('anggota.trash');
-    Route::post('/anggots/kill/{id}', [AnggotaController::class, 'kill'])->name('anggota.kill');
-    Route::get('/anggotas/restore/{id}', [AnggotaController::class, 'restore'])->name('anggota.restore');
-    Route::post('/anggotas/update/foto/{id}',[AnggotaController::class,'update_foto'])->name('anggota.update.foto');
-    
 
     // Data Program
     Route::resource('program',ProgramController::class);

@@ -82,13 +82,13 @@ class DataKeluargaController extends Controller
         if ($request->foto) {
             $foto = $request->foto;
             $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('img/keluarga/', $new_foto);
-            $nameFoto = 'img/keluarga/' . $new_foto;
+            $foto->move('img/keluarga/profile/', $new_foto);
+            $nameFoto = 'img/keluarga/profile/' . $new_foto;
         } else {
             if ($request->jk == 'Laki-Laki') {
                 $nameFoto = 'img/keluarga/52471919042020_male.jpg';
             } else {
-                $nameFoto = 'img/keluarga/50271431012020_female.jpg';
+                $nameFoto = 'img/keluarga/52471919042020_female.jpg';
             }
         }
             $lahir = Date ('dmY',strtotime($request->tgl_lahir));
@@ -209,8 +209,8 @@ class DataKeluargaController extends Controller
         if ($request->foto) {
             $foto = $request->foto;
             $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('uploads/anggota/', $new_foto);
-            $nameFoto = 'uploads/anggota/' . $new_foto;
+            $foto->move('img/keluarga/profile/', $new_foto);
+            $nameFoto = 'img/keluarga/profile/' . $new_foto;
         } else {
               
         }
@@ -240,7 +240,7 @@ class DataKeluargaController extends Controller
             Session::flash('infoes', 'Data Anggota Keluarga Parantos di edit');
             return redirect()->back();
         }else{
-            return redirect('profile')->with('infoes','Selamat Ayeuna profilena atos di robah');
+            return redirect()->back()->with('infoes','Selamat Ayeuna profilena atos di robah');
         }
     }
 

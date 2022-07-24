@@ -235,18 +235,18 @@ class AnggotaController extends Controller
 
             $foto = $request->foto;
             $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('uploads/anggota/', $new_foto);
-            $nameFoto = 'uploads/anggota/' . $new_foto;
+            $foto->move('img/profile/', $new_foto);
+            $nameFoto = 'img/profile/' . $new_foto;
 
                 $data_user = User::find($id);
                 $data_user->foto = $nameFoto;
                 $data_user->update();
 
-                $data_anggota = AnggotaKeluarga::find($request->user);
+                $data_anggota = AnggotaKeluarga::find($data_user->keluarga_id);
                 $data_anggota->foto = $nameFoto;
                 $data_anggota->update();
 
-                return redirect()->back()->with('sukses','Foto Profile berhasil di gentos, Asikkk cakep nya ganti foto anyar.');
+                return redirect('profile')->with('sukses','Foto Profile berhasil di gentos, Asikkk cakep nya ganti foto anyar.');
 
         
     }
