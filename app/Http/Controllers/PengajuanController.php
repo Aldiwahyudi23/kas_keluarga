@@ -68,10 +68,9 @@ class PengajuanController extends Controller
         }else{
 
         if ($request->foto) {
-            $foto = $request->foto;
-            $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('img/keluarga/bukti/', $new_foto);
-            $nameFoto = 'img/keluarga/bukti/' . $new_foto;
+                $file = $request->file('foto');
+                $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/img/bukti'), $nama);
         }
         $tanggal = Carbon::now();
 
@@ -84,7 +83,7 @@ class PengajuanController extends Controller
             $data->status = $request->status;
             $data->anggota_id = Auth::id();
             if ($request->foto) {
-                $data->foto          = $nameFoto;
+                $data->foto          = "/img/bukti/$nama";
             }
 
             $data->save();

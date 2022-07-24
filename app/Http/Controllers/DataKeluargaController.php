@@ -53,8 +53,8 @@ class DataKeluargaController extends Controller
             'tmp_lahir'  => 'required',
             'tgl_lahir'  => 'required',
             'alamat'  => 'required',
-            'no_hp'  => 'required|unique:keluargas|max:13',
-            'nik'  => 'required|unique:keluargas|min:15|max:17',
+            'no_hp'  => 'unique:keluargas|max:13',
+            'nik'  => 'unique:keluargas|min:15|max:17',
             'nama_hubungan'  => 'required',
             'hubungan'  => 'required',
             'pekerjaan'  => 'required',
@@ -80,10 +80,9 @@ class DataKeluargaController extends Controller
             ]
         );
         if ($request->foto) {
-            $foto = $request->foto;
-            $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('img/keluarga/profile/', $new_foto);
-            $nameFoto = 'img/keluarga/profile/' . $new_foto;
+            $file = $request->file('foto');
+            $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/img/profile'), $nama);
         } else {
             if ($request->jk == 'Laki-Laki') {
                 $nameFoto = 'img/keluarga/52471919042020_male.jpg';
@@ -106,7 +105,7 @@ class DataKeluargaController extends Controller
             $data->hubungan      = $request->hubungan;
             $data->pekerjaan      = $request->pekerjaan;
             $data->anak_ke      = $request->anak_ke;
-            $data->foto      = $nameFoto;
+            $data->foto      = "/img/profile/$nama";
 
             $data->save();
 
@@ -180,8 +179,8 @@ class DataKeluargaController extends Controller
                 'tmp_lahir'  => 'required',
                 'tgl_lahir'  => 'required',
                 'alamat'  => 'required',
-                'no_hp'  => 'required|max:13',
-                'nik'  => 'required|min:15|max:17',
+                'no_hp'  => max:13',
+                'nik'  => min:15|max:17',
                 'nama_hubungan'  => 'required',
                 'hubungan'  => 'required',
                 'pekerjaan'  => 'required',
@@ -207,10 +206,9 @@ class DataKeluargaController extends Controller
             ]
         );
         if ($request->foto) {
-            $foto = $request->foto;
-            $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('img/keluarga/profile/', $new_foto);
-            $nameFoto = 'img/keluarga/profile/' . $new_foto;
+            $file = $request->file('foto');
+            $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/img/profile'), $nama);
         } else {
               
         }
@@ -230,7 +228,7 @@ class DataKeluargaController extends Controller
         $data->hubungan      = $request->hubungan;
         $data->anak_ke      = $request->anak_ke;
         if ($request->foto) {
-            $data->foto      = $nameFoto;
+            $data->foto      = "/img/profile/$nama";
         }else{
 
         }

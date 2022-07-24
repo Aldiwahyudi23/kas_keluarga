@@ -233,18 +233,17 @@ class AnggotaController extends Controller
              $id = Crypt::decrypt($id);
 
 
-            $foto = $request->foto;
-            $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('img/profile/', $new_foto);
-            $nameFoto = 'img/profile/' . $new_foto;
+        $file = $request->file('foto');
+        $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('/img/profile'), $nama);
 
-                $data_user = User::find($id);
-                $data_user->foto = $nameFoto;
-                $data_user->update();
+        $data_user = User::find($id);
+        $data_user->foto = "/img/profile/$nama";
+        $data_user->update();
 
-                $data_anggota = AnggotaKeluarga::find($data_user->keluarga_id);
-                $data_anggota->foto = $nameFoto;
-                $data_anggota->update();
+        $data_anggota = AnggotaKeluarga::find($data_user->keluarga_id);
+        $data_anggota->foto = "/img/profile/$nama";
+        $data_anggota->update();
 
                 return redirect('profile')->with('sukses','Foto Profile berhasil di gentos, Asikkk cakep nya ganti foto anyar.');
 
