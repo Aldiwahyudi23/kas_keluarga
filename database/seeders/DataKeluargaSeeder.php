@@ -17,16 +17,16 @@ class DataKeluargaSeeder extends Seeder
     {
         DB::table('keluargas')->insert([
             'id' => 1,
-            'nama' => 'Ma Haya',
-            'jenis_kelamin' => 'Perempuan',
+            'nama' => 'Official Keluarga Alm.Ma Haya',
+            'jenis_kelamin' => 'Laki-Laki',
             'tempat_lahir' => 'Garut',
             'tanggal_lahir' => '02',
             'no_hp' => '0898',
             'alamat' => 'cihanja',
-            'pekerjaan' => 'Ibu Rumah Tangga',
+            'pekerjaan' => 'Official',
             'nik' => '001',
-            'nama_hubungan' => 'Qodir',
-            'hubungan' => 'Istri',
+            'keluarga_id' => '1',
+            'hubungan' => 'Pengurus',
             'foto' => 'img/keluarga/50271431012020_female.jpg',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')

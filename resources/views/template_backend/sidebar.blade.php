@@ -83,7 +83,7 @@ $anggaran = Anggaran::all();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{Route('berita.index')}}" class="nav-link" id="DataUser">
+                            <a href="" class="nav-link" id="DataUser">
                                 <i class="fas fa-user-plus nav-icon"></i>
                                 <p>Data Berita</p>
                             </a>

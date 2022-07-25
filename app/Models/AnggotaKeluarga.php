@@ -24,8 +24,9 @@ class AnggotaKeluarga extends Model
         'alamat',
         'pekerjaan',
         'anak_ke',
-        'orang_tua',
+        'keluarga_id',
         'foto',
+        'tugu',
     ];
 
     public function anggota()
@@ -36,5 +37,10 @@ class AnggotaKeluarga extends Model
     {
         return $this->hasOne(User::class);
     }
+    public function keluarga()
+    {
+        return $this->belongsTo(AnggotaKeluarga::class);
+    }
+
    
 }

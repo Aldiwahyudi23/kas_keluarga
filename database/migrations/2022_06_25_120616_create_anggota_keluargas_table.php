@@ -16,8 +16,8 @@ class CreateAnggotaKeluargasTable extends Migration
         Schema::create('keluargas', function (Blueprint $table) {
             $table->id();
                 $table->string('nama')->unique();
-                $table->string('nik')->unique();
-                $table->string('no_hp')->unique();
+                $table->string('nik')->unique()->nullable();
+                $table->string('no_hp')->unique()->nullable();
                 $table->string('tempat_lahir');
                 $table->string('tanggal_lahir');
                 $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
@@ -25,8 +25,9 @@ class CreateAnggotaKeluargasTable extends Migration
                 $table->string('pekerjaan')->nullable();
                 $table->string('hubungan');
                 $table->string('anak_ke')->nullable();
-                $table->string('nama_hubungan');
+            $table->foreignId('keluarga_id')->references('id')->on('keluargas');
                 $table->string('foto');
+                $table->string('tugu')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
         });

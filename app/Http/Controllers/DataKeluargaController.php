@@ -23,10 +23,10 @@ class DataKeluargaController extends Controller
      */
     public function index()
     {
-        $data = AnggotaKeluarga::all();
-        $data_keluarga_role = $data->groupBy('nama_hubungan');
+        $data_keluarga_tugu = AnggotaKeluarga::where('tugu','ya')->get();
+        
         $data_keluarga = AnggotaKeluarga::all();
-        return view('admin.master_data.data_keluarga.index',compact('data_keluarga','data_keluarga_role'));
+        return view('admin.master_data.data_keluarga.index',compact('data_keluarga','data_keluarga_tugu'));
     }
 
     /**
@@ -102,7 +102,7 @@ class DataKeluargaController extends Controller
             $data->alamat      = $request->alamat;
             $data->no_hp      = $request->no_hp;
             $data->nik      = $no_induk;
-            $data->nama_hubungan      = $request->nama_hubungan;
+           $data->anggota_keluarga_id      = $request->nama_hubungan;
             $data->hubungan      = $request->hubungan;
             $data->pekerjaan      = $request->pekerjaan;
             $data->anak_ke      = $request->anak_ke;
@@ -140,11 +140,13 @@ class DataKeluargaController extends Controller
      */
     public function detail($id)
     {
+        $id = Crypt::decrypt($id);
         $data_anggota = AnggotaKeluarga::find($id);
 
-        $data_keluarga = AnggotaKeluarga::where('nama_hubungan',$id)->get();
+        $data_keluarga_hubungan = AnggotaKeluarga::where('keluarga_id',$id)->get();
+        $data_keluarga = AnggotaKeluarga::all();
 
-        return view('admin.master_data.data_keluarga.detail',compact('data_keluarga','data_anggota'));
+        return view('admin.master_data.data_keluarga.detail',compact('data_keluarga','data_anggota', 'data_keluarga_hubungan'));
     }
 
     /**
@@ -224,7 +226,7 @@ class DataKeluargaController extends Controller
         $data->no_hp      = $request->no_hp;
         $data->nik      = $request->nik;
         $data->pekerjaan      = $request->pekerjaan;
-        $data->nama_hubungan      = $request->nama_hubungan;
+       $data->anggota_keluarga_id      = $request->nama_hubungan;
         $data->hubungan      = $request->hubungan;
         $data->anak_ke      = $request->anak_ke;
         if ($request->foto) {

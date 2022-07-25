@@ -20,9 +20,9 @@
         <h5><i class="fas fa-info"></i> Informasi :</h5>
         <p>Punten, Nyuhunkeun kerja samana kanggo ngisi data keluarga</p>
         <p>Data keluarga penting kanggo pendataan keluarga alm. ma Haya supados teu pareman obor</p> <br>
-        <a href="/keluarga">
-                <h5><i class="fas fa-check"></i> Klik </h5> Kanggo nambah sareng edit data keluarga
-            </a>
+        <a href="{{Route('keluarga.detail',Crypt::encrypt(1))}}">
+            <h5><i class="fas fa-check"></i> Klik </h5> Kanggo nambah sareng edit data keluarga
+        </a>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

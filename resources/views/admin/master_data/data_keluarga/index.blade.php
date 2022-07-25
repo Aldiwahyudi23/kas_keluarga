@@ -214,13 +214,13 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php $no = 0; ?>
-                                                            @foreach($data_keluarga_role as $data=>$role)
+                                                            @foreach($data_keluarga_tugu as $data)
                                                             <?php $no++; ?>
                                                             <tr>
-                                                                
+
                                                                 <td>{{$no}}</td>
-                                                                <td> <a href="{{Route('keluarga.detail',$data)}} ">{{$data}}</a></td>
-                                                                <td> <a href="{{Route('keluarga.detail',$data)}} ">{{$role->count()}}</a></td>
+                                                                <td> <a href="{{Route('keluarga.detail',Crypt::encrypt($data->id))}} ">{{$data->nama}}</a></td>
+                                                                <td> <a href="{{Route('keluarga.detail',Crypt::encrypt($data->id))}} ">{{$data->alamat}}</a></td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
