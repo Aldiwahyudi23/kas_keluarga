@@ -17,7 +17,6 @@ class CreatePengumumenTable extends Migration
             $table->id();
             $table->string('opsi', 32);
             $table->text('isi');
-            $table->foreignId('program_id')->references('id')->on('programs');
             $table->timestamps();
             $table->softDeletes();
         });

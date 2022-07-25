@@ -67,6 +67,10 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
         Route::get('/anggarans/trash/', [AnggaranController::class, 'trash'])->name('anggaran.trash');
         Route::post('/anggarans/kill/{id}', [AnggaranController::class, 'kill'])->name('anggaran.kill');
         Route::get('/anggarans/restore/{id}', [AnggaranController::class, 'restore'])->name('anggaran.restore');
+
+    // pengumuman
+    Route::get('/admin/pengumuman', [PengumumanController::class, 'index'])->name('admin.pengumuman');
+    Route::post('/admin/pengumuman/simpan', [PengumumanController::class, 'simpan'])->name('admin.pengumuman.simpan');
 });
 
 //Route untuk user Admin

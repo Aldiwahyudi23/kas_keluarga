@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
             'no_hp' =>'083',
             'is_active' =>'1',
             'keluarga_id' =>'1',
-            'program1' =>'Bayar',
+            'program1' =>'Kas',
             'program2' =>'Tabungan',
             'program3' =>'1',
             'created_at' => date('Y-m-d H:i:s'),
