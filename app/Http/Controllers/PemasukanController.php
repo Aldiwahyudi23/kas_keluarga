@@ -145,11 +145,13 @@ class PemasukanController extends Controller
                 'jumlah' => 'required',
                 'anggota_id' => 'required',
                 'keterangan' => 'required',
+                'pembayaran' => 'required',
             ],
             [
                 'jumlah.required' => 'Nominal kedah di isi',
                 'anggota_id.required' => 'anggota_id kedah di isi',
                 'keterangan.required' => 'keterangan kedah di isi',
+                'pembayaran.required' => 'keterangan kedah di isi',
             ]
             );
 

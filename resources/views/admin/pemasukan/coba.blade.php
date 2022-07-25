@@ -817,7 +817,7 @@
                                                                         $jumlah = $total_setor;
                                                                         $jumlah_tabungan = $total_tabungan;
                                                                         ?>
-                                                                        <td> <a href="{{route('detail.kas',Crypt::encrypt($anggota->id))}}"> {{ "Rp " . number_format( $jumlah,2,',','.') }} </a></td>
+                                                                        <td> <a href="{{route('detail.anggota.kas',Crypt::encrypt($anggota->id))}}"> {{ "Rp " . number_format( $jumlah,2,',','.') }} </a></td>
                                                                         @if (Auth::user()->role == "Admin" || Auth::user()->role == "Bendahara" || Auth::user()->role == "Sekertaris")
                                                                         <td><a href="{{route('detail.anggota.tabungan',Crypt::encrypt($anggota->id))}}">{{ "Rp " . number_format( $jumlah_tabungan,2,',','.') }} </a></td>
                                                                         @endif

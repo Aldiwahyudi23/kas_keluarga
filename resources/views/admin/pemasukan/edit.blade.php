@@ -85,7 +85,7 @@
 
                                                 <div class="form-group">
                                                     <label for="tanggal">Tanggal Di Setujui</label>
-                                                    <input type="datetime" id="" name="" value="{{$data_pemasukan->created_at }}" placeholder="Nama inisial" class="form-control @error('') is-invalid @enderror" disabled>
+                                                    <input type="datetime" id="" name="" value="{{$data_pemasukan->created_at }}" placeholder="Nama inisial" class="form-control @error('') is-invalid @enderror" >
 
                                                 </div>
 
@@ -99,15 +99,22 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pembayaran">pembayaran</label>
-                                                    <input type="text" id="pembayaran" name="pembayaran" value="{{$data_pemasukan->pembayaran}}" placeholder="contoh@gmail.com" class="form-control @error('pembayaran') is-invalid @enderror">
+                                                    <label for="pembayaran">Metode Pembayaran</label>
+                                                    <select name="pembayaran" id="pembayaran2" class="form-control select2bs4 @error('pembayaran') is-invalid @enderror" required>
+                                                        @if ($data_pemasukan->pembayaran == $data_pemasukan->pembayaran)
+                                                        <option value="{{$data_pemasukan->pembayaran}}">{{$data_pemasukan->pembayaran}}</option>
+                                                        @endif
+                                                        <option value="">--Pilih Pembayaran--</option>
+                                                        <option value="Cash">Uang Tunai</option>
+                                                        <option value="Transfer">Transfer</option>
+                                                    </select>
                                                     @error('pembayaran')
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $message }}</strong>
                                                     </div>
                                                     @enderror
                                                 </div>
-
+                                                
                                             </div>
                                             <div class="col-md-6">
 
