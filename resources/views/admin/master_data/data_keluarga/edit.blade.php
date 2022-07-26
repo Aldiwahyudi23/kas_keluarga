@@ -40,6 +40,21 @@
     </div>
 </div>
 @endif
+@if ($errors->any())
+<div class="container">
+    <div class="callout callout-danger alert alert-danger alert-dismissible fade show">
+        <h5><i class="fas fa-exclamation-triangle"></i> Peringatan :</h5>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+@endif
 
 <section class="content card col-12" style="padding: 10px 10px 10px 10px ">
     <div class="box">
@@ -101,7 +116,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nik">NIK</label>
-                                                    <input type="text" id="nik" name="nik" value="{{ $data_keluarga->nik}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
+                                                    <input type="number" id="nik" name="nik" value="{{ old('nik')}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
                                                     @error('nik')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
                                                 </div>
                                                 <div class="form-group">
@@ -162,8 +177,8 @@
                                     <div class="form-group">
                                         <label for="nama_hubungan">Nama Orang Tua / Suami Istri</label>
                                         <select id="nama_hubungan" name="nama_hubungan" class="select2bs4 form-control @error('nama_hubungan') is-invalid @enderror">
-                                            @if ($data_keluarga->nama_hubungan == $data_keluarga->nama_hubungan)
-                                            <option value="{{$data_keluarga->nama_hubungan}}">{{$data_keluarga->nama_hubungan}}</option>
+                                            @if ($data_keluarga->keluarga->nama == $data_keluarga->keluarga->nama)
+                                            <option value="{{$data_keluarga->keluarga_id}}">{{$data_keluarga->keluarga->nama}}</option>
                                             @endif
                                             <option value="">-- Pilih Nama --</option>
                                             @foreach ($data_keluargas as $data)
@@ -194,6 +209,7 @@
                             </div>
                         </div>
                     </div>
+                    @if (Auth::user()->role == "Admin")
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header bg-light p-2">
@@ -265,6 +281,7 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    @endif
                 </div><!-- /.container-fluid -->
         </section>
     </div>

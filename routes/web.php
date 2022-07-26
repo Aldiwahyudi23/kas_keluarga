@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
         Route::get('/keluargas/trash/',[DataKeluargaController::class,'trash'])->name('keluarga.trash');
         Route::post('/anggots/kill/{id}',[DataKeluargaController::class,'kill'])->name('keluarga.kill');
         Route::get('/keluargas/restore/{id}',[DataKeluargaController::class,'restore'])->name('keluarga.restore');
+        Route::get('/keluargas/tambah/{id}',[DataKeluargaController::class,'tambah'])->name('keluarga.tambah');
         
     // Data Anggota atau User
         Route::resource('anggota',AnggotaController::class);

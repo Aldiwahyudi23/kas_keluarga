@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\DataKeluargaRequest;
 use App\Models\Anggota;
 use App\Models\User;
+use App\Models\Foto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -45,16 +46,32 @@ class DataKeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function tambah(Request $request,$id)
+    {
+        $id = Crypt::decrypt($id);
+        $data_anggota = AnggotaKeluarga::find($id);
+        $data_keluarga = AnggotaKeluarga::all();
+
+        return view('admin.master_data.data_keluarga.tambah', compact('data_keluarga','data_anggota'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+       
         $request->validate([
             'nama'     => 'required|unique:keluargas',
             'jk'  => 'required',
             'tmp_lahir'  => 'required',
             'tgl_lahir'  => 'required',
             'alamat'  => 'required',
-            'no_hp'  => 'unique:keluargas|max:13',
-            'nik'  => 'unique:keluargas|min:15|max:17',
+            'no_hp'  => 'max:13',
+               
             'nama_hubungan'  => 'required',
             'hubungan'  => 'required',
             'pekerjaan'  => 'required',
@@ -81,18 +98,17 @@ class DataKeluargaController extends Controller
         );
         if ($request->foto) {
             $file = $request->file('foto');
-            $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+            $nama = 'anggota-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/img/profile'), $nama);
-            $nameFoto ="/img/profile/$nama";
+           $fotoo = "/img/profile/$nama";
         } else {
             if ($request->jk == 'Laki-Laki') {
-                $nameFoto = 'img/keluarga/52471919042020_male.jpg';
+                $fotoo = 'img/keluarga/52471919042020_male.jpg';
             } else {
-                $nameFoto = 'img/keluarga/52471919042020_female.jpg';
+                $fotoo = 'img/keluarga/52471919042020_female.jpg';
             }
         }
-            $lahir = Date ('dmY',strtotime($request->tgl_lahir));
-            $no_induk = $request->nik - $lahir;
+        $no_induk = 32454000000830 + $request->nik;
 
             $data = new AnggotaKeluarga;
             $data->nama      = $request->nama;
@@ -102,15 +118,14 @@ class DataKeluargaController extends Controller
             $data->alamat      = $request->alamat;
             $data->no_hp      = $request->no_hp;
             $data->nik      = $no_induk;
-           $data->anggota_keluarga_id      = $request->nama_hubungan;
+           $data->keluarga_id      = $request->nama_hubungan;
             $data->hubungan      = $request->hubungan;
             $data->pekerjaan      = $request->pekerjaan;
             $data->anak_ke      = $request->anak_ke;
-            $data->foto      = $nameFoto;
+            $data->foto      = $fotoo;
 
             $data->save();
 
-            
 
 
             Session::flash('sukses', 'Data Anggota Keluarga Parantos ka simpen');
@@ -174,6 +189,7 @@ class DataKeluargaController extends Controller
     public function update(Request $request, $id)
     {
         $id = Crypt::decrypt($id);
+
         $request->validate(
             [
                 'nama'     => 'required',
@@ -181,8 +197,8 @@ class DataKeluargaController extends Controller
                 'tmp_lahir'  => 'required',
                 'tgl_lahir'  => 'required',
                 'alamat'  => 'required',
-                'no_hp'  => 'max:13',
-                'nik'  => 'min:15|max:17',
+                'no_hp'  => 'required|max:13',
+                'nik'  => 'max:17',
                 'nama_hubungan'  => 'required',
                 'hubungan'  => 'required',
                 'pekerjaan'  => 'required',
@@ -209,13 +225,15 @@ class DataKeluargaController extends Controller
         );
         if ($request->foto) {
             $file = $request->file('foto');
-            $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+            $nama = 'anggota-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/img/profile'), $nama);
         } else {
               
         }
-
-
+        if ($request->nik) {
+            $no_induk = $request->nik;
+        } else {
+        }
 
         $data = AnggotaKeluarga::find($id);
         $data->nama      = $request->nama;
@@ -224,9 +242,12 @@ class DataKeluargaController extends Controller
         $data->tanggal_lahir      = $request->tgl_lahir;
         $data->alamat      = $request->alamat;
         $data->no_hp      = $request->no_hp;
-        $data->nik      = $request->nik;
+        if ($request->nik) {
+            $data->nik      = $no_induk;
+        } else {
+        }
         $data->pekerjaan      = $request->pekerjaan;
-       $data->anggota_keluarga_id      = $request->nama_hubungan;
+       $data->keluarga_id      = $request->nama_hubungan;
         $data->hubungan      = $request->hubungan;
         $data->anak_ke      = $request->anak_ke;
         if ($request->foto) {
@@ -311,8 +332,9 @@ class DataKeluargaController extends Controller
     {
         $id = User::find(Auth::user()->id) ;
         $data_keluarga = AnggotaKeluarga::find($id->keluarga_id);
+        $foto = Foto::where('keluarga_id', 3)->get();
 
-        return view('admin.profile.index',compact('data_keluarga'));
+        return view('admin.profile.index',compact('data_keluarga','foto'));
     }
 
     public function profile_edit($id) 

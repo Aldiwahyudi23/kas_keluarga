@@ -23,6 +23,7 @@ class AnggotaKeluarga extends Model
         'jenis_kelamin',
         'alamat',
         'pekerjaan',
+        'hubungan',
         'anak_ke',
         'keluarga_id',
         'foto',

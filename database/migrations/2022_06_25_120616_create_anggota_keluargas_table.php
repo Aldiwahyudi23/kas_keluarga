@@ -17,7 +17,7 @@ class CreateAnggotaKeluargasTable extends Migration
             $table->id();
                 $table->string('nama')->unique();
                 $table->string('nik')->unique()->nullable();
-                $table->string('no_hp')->unique()->nullable();
+                $table->string('no_hp')->nullable();
                 $table->string('tempat_lahir');
                 $table->string('tanggal_lahir');
                 $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);

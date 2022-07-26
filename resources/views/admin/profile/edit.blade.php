@@ -112,8 +112,8 @@
                 <div class="form-group">
                     <label for="nama_hubungan">Nama Orang Tua / Suami Istri</label>
                     <select id="nama_hubungan" name="nama_hubungan" class="select2bs4 form-control @error('nama_hubungan') is-invalid @enderror">
-                        @if ($data_keluarga->nama_hubungan == $data_keluarga->nama_hubungan)
-                        <option value="{{$data_keluarga->nama_hubungan}}">{{$data_keluarga->nama_hubungan}}</option>
+                        @if($data_keluarga->keluarga_id == true)
+                        <option value="{{$data_keluarga->keluarga_id}}">{{$data_keluarga->keluarga->nama}}</option>
                         @endif
                         <option value="">-- Pilih Nama --</option>
                         @foreach ($data_keluargas as $data)
@@ -124,7 +124,7 @@
                 <div class="form-group">
                     <label for="hubungan">Hubungan</label>
                     <select id="hubungan" name="hubungan" class="select2bs4 form-control @error('hubungan') is-invalid @enderror">
-                        @if ($data_keluarga->hubungan == $data_keluarga->hubungan)
+                        @if($data_keluarga->hubungan == true)
                         <option value="{{$data_keluarga->hubungan}}">{{$data_keluarga->hubungan}}</option>
                         @endif
                         <option value="">-- Pilih Hubungan --</option>

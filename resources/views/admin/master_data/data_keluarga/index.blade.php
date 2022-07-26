@@ -40,6 +40,21 @@
     </div>
 </div>
 @endif
+@if ($errors->any())
+<div class="container">
+    <div class="callout callout-danger alert alert-danger alert-dismissible fade show">
+        <h5><i class="fas fa-exclamation-triangle"></i> Peringatan :</h5>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+@endif
 
 <section class="content card col-12" style="padding: 10px 10px 10px 10px ">
     <div class="box">
@@ -100,7 +115,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nik">NIK</label>
-                                                    <input type="number" id="nik" name="nik" value="{{ old('nik')}}" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
+                                                    <input type="number" id="nik" name="nik" value="{{ old('nik')}} - 1020304050607080" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
                                                     @error('nik')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
                                                 </div>
                                                 <div class="form-group">
@@ -184,11 +199,12 @@
                                     <div class="form-group row" id="noId">
 
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save"></i> SIMPEN</button>
+                                    <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Punten data nu di masukeun kedah leres, dupi NO NIK moal tiasa di ubah, janten cek deui sing leres, hatur nuhun')"><i class="fas fa-save"></i> SIMPEN</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    @if (Auth::user()->role == "Admin")
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header bg-light p-2">
@@ -250,6 +266,7 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    @endif
                 </div><!-- /.container-fluid -->
         </section>
     </div>

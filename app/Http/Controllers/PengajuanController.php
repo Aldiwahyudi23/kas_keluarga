@@ -69,7 +69,7 @@ class PengajuanController extends Controller
 
         if ($request->foto) {
                 $file = $request->file('foto');
-                $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+                $nama = 'bukti-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('/img/bukti'), $nama);
         }
         $tanggal = Carbon::now();

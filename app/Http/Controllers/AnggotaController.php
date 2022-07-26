@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateAnggotaRequest;
 use App\Models\Anggota;
 use App\Models\AnggotaKeluarga;
 use App\Models\Role;
+use App\Models\Foto;
 use App\Models\Program;
 use App\Models\RoleProgram;
 use Illuminate\Support\Facades\Session;
@@ -137,12 +138,12 @@ class AnggotaController extends Controller
     {
         $id = Crypt::decrypt($id);
         if ($request->foto) {
-            $foto = $request->foto;
-            $new_foto = date('siHdmY') . "_" . $foto->getClientOriginalName();
-            $foto->move('uploads/anggota/', $new_foto);
-            $nameFoto = 'uploads/anggota/' . $new_foto;
+            $file = $request->file('foto');
+            $nama = 'anggota-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/img/profile'), $nama);
         } else {
         }
+
 
         $data =  User::find($id);
         $data->email      = $request->email;
@@ -157,10 +158,12 @@ class AnggotaController extends Controller
             
         }
         if ($request->foto) {
-            $data->foto      = $nameFoto;
+            $data->foto = "/img/profile/$nama";
         } else {
         }
         $data->update();
+
+        
 
         $data_user = AnggotaKeluarga::find($request->anggota_kel_id);
         $data_user->foto = $data->foto;
@@ -234,7 +237,7 @@ class AnggotaController extends Controller
 
 
         $file = $request->file('foto');
-        $nama = 'logo-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
+        $nama = 'anggota-' . date('Y-m-dHis') . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('/img/profile'), $nama);
 
         $data_user = User::find($id);
@@ -244,6 +247,13 @@ class AnggotaController extends Controller
         $data_anggota = AnggotaKeluarga::find($data_user->keluarga_id);
         $data_anggota->foto = "/img/profile/$nama";
         $data_anggota->update();
+
+            $foto = new Foto;
+            $foto->keluarga_id = $data_user->keluarga_id ;
+            $foto->user_id = $id ;
+            $foto->foto  = $data_anggota->foto;
+            $foto->save();
+            
 
                 return redirect('profile')->with('sukses','Foto Profile berhasil di gentos, Asikkk cakep nya ganti foto anyar.');
 

@@ -106,7 +106,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="role_id">Role</label>
                                                     <select id="role_id" name="role_id" class="select2bs4 form-control @error('role_id') is-invalid @enderror">
@@ -121,6 +121,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <input type="password" id="password" name="password" value="{{ old('password')}}" placeholder="xxxxxxxx" class="form-control @error('password') is-invalid @enderror">
