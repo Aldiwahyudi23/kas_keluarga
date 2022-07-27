@@ -1,5 +1,7 @@
+@if (Auth::user()->is_active == 1)
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <!-- <meta charset="UTF-8"> -->
@@ -109,7 +111,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
-        
+
 
         @include('template_backend.navbar')
 
@@ -131,3 +133,38 @@
         <!-- /.content-wrapper -->
 
         @include('template_backend.footer')
+
+        @else
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Love</title>
+        </head>
+
+        <body class="justify-content-center">
+            <center>
+                <h1>Hapunten !</h1>
+                <img src="https://c.tenor.com/Z8ezUHZzcLoAAAAC/love.gif" alt="">
+                <h1>Akun Anjeun Teu Aktif</h1>
+                <h3>Kanggo ngaktifkeun deui, mangga chat wae ka Official </h3>
+                <a id="btn_mau" href="http://wa.me/6281312716522">Chat Official</a>
+                <button id="btn_gamau" onclick="gamau(this)" style="position: relative;">Gamau</button>
+            </center>
+        </body>
+
+        <script>
+            function gamau(id) {
+                var mau = document.getElementById("btn_mau");
+                var i = Math.floor(Math.random() * 150) + 1;
+                var j = Math.floor(Math.random() * 50) + mau.offsetHeight;
+                id.style.left = i + "px";
+                id.style.top = j + "px";
+            }
+        </script>
+
+        </html>
+        @endif

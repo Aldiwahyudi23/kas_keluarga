@@ -259,5 +259,15 @@ class AnggotaController extends Controller
 
         
     }
+
+    public function is_active(Request $Request,$id){
+
+
+        $data = User::find($id);
+        $data->is_active = $Request->is_active;
+        $data->update();
+
+        return redirect()->back();
+    }
     
 }

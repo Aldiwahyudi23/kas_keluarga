@@ -122,8 +122,8 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-                                              
-                                         
+
+
                                                 <div class="form-group">
                                                     <label for="role_id">Role</label>
                                                     <select id="role_id" name="role_id" class="select2bs4 form-control @error('role_id') is-invalid @enderror">
@@ -204,6 +204,25 @@
                                                                 <td>{{$data->name}}</td>
                                                                 <td>{{$data->role}}</td>
                                                                 <td>
+                                                                    @if ($data->is_active == 1)
+                                                                    <form action="{{route('is_active',$data->id)}}" method="POST">
+                                                                        @csrf
+                                                             
+                                                                        @if (auth()->user()->role == 'Admin')
+                                                                        <input type="hidden" name="is_active" id="is_active" value="0">
+                                                                        <button class="btn btn-link btn-sm mt-2"><i class="nav-icon fas fa-check" onclick="return confirm('Leres bade ngahapus data anu namina {{$data->nama}}  ?')"></i> Aktif </button>
+                                                                        @endif
+                                                                    </form>
+                                                                    @else
+                                                                    <form action="{{route('is_active',$data->id)}}" method="POST">
+                                                                        @csrf
+                                                             
+                                                                        @if (auth()->user()->role == 'Admin')
+                                                                        <input type="hidden" name="is_active" id="is_active" value="1">
+                                                                        <button class="btn btn-link btn-sm mt-2"><i class="nav-icon " onclick="return confirm('Leres bade ngahapus data anu namina {{$data->nama}}  ?')"></i> Tidak Aktif </button>
+                                                                        @endif
+                                                                    </form>
+                                                                    @endif
                                                                     <form action="{{route('anggota.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                         @csrf
                                                                         @method('delete')

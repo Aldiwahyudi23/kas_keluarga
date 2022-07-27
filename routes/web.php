@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin,Bendahara,Sekertaris,Ket
         Route::post('/anggots/kill/{id}', [AnggotaController::class, 'kill'])->name('anggota.kill');
         Route::get('/anggotas/restore/{id}', [AnggotaController::class, 'restore'])->name('anggota.restore');
         Route::post('/anggotas/update/foto/{id}',[AnggotaController::class,'update_foto'])->name('anggota.update.foto');
+        Route::post('/anggotas/aktif/{id}',[AnggotaController::class,'is_active'])->name('is_active');
         
         // Data Anggaran
         Route::resource('anggaran',AnggaranController::class);
