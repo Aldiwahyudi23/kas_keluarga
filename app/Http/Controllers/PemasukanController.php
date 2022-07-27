@@ -31,7 +31,7 @@ class PemasukanController extends Controller
 
         $data_semua = Pemasukan::orderByRaw('created_at DESC')->where('kategori','Kas')->get();
         $data_semua_setor = Pemasukan::orderByRaw('created_at DESC')->where('kategori','Setor_Tunai')->get();
-        $data_anggota = User::where('is_active',2)->get();
+        $data_anggota = User::where('program1','Kas')->get();
         $data_user = Anggota::find(Auth::id());
         return view('admin.pemasukan.coba', compact('data_setor', 'data_anggota', 'data_semua','data_semua_setor','data_tabungan'));
     }

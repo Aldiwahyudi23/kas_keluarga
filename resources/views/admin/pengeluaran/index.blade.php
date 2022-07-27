@@ -556,8 +556,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
@@ -590,8 +590,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf
@@ -635,8 +635,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf
@@ -681,8 +681,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <tr>
                                                             <td>{{$no}}</td>
                                                             <td>{{$data->anggota->name}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf
@@ -726,8 +726,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf
@@ -771,8 +771,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf
@@ -816,8 +816,8 @@ $pengajuan = Pengajuan::where('anggota_id', $id)->count();
                                                         <?php $no++; ?>
                                                         <tr>
                                                             <td>{{$no}}</td>
-                                                            <td>{{$data->tanggal}}</td>
-                                                            <td>{{ "Rp " . number_format($data->jumlah,2,',','.') }}</td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{$data->tanggal}}<a></td>
+                                                            <td> <a href="{{route('pengeluaran.show',Crypt::encrypt($data->id))}}" class="text-dark">{{ "Rp " . number_format($data->jumlah,2,',','.') }}<a></a></td>
                                                             <td>
                                                                 <form action="{{route('pengeluaran.destroy',Crypt::encrypt($data->id))}}" method="POST">
                                                                     @csrf

@@ -113,11 +113,7 @@
                                                     <input type="date" id="tgl_lahir" name="tgl_lahir" value="{{ old('tgl_lahir')}}" placeholder="23-12-2000" class="form-control @error('tgl_lahir') is-invalid @enderror">
                                                     @error('tgl_lahir')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="nik">NIK</label>
-                                                    <input type="number" id="nik" name="nik" value="{{ old('nik')}} - 1020304050607080" placeholder="000000001" class="form-control @error('nik') is-invalid @enderror">
-                                                    @error('nik')<div class="invalid-feedback"><strong>{{ $message }}</strong></div>@enderror
-                                                </div>
+                                      
                                                 <div class="form-group">
                                                     <label for="alamat">Alamat</label>
                                                     <input type="text" id="alamat" name="alamat" value="{{ old('alamat') }}" placeholder="Kp. Cihanja Rt.03 Rw.03" class="form-control @error('alamat') is-invalid @enderror">

@@ -71,7 +71,6 @@ class DataKeluargaController extends Controller
             'tgl_lahir'  => 'required',
             'alamat'  => 'required',
             'no_hp'  => 'max:13',
-               
             'nama_hubungan'  => 'required',
             'hubungan'  => 'required',
             'pekerjaan'  => 'required',
@@ -108,7 +107,17 @@ class DataKeluargaController extends Controller
                 $fotoo = 'img/keluarga/52471919042020_female.jpg';
             }
         }
-        $no_induk = 32454000000830 + $request->nik;
+
+        if ($request->anak_ke){
+            $no_induk = 50000 . $request->nama_hubungan . $request->anak_ke  ;
+        }else{
+            if($request->hubungan == "Suami"){
+                $no_induk = 50000 .  $request->nama_hubungan . 0  ;
+            }
+            if($request->hubungan == "Istri"){
+                $no_induk = 50000 . $request->nama_hubungan . 00;
+            }
+        }
 
             $data = new AnggotaKeluarga;
             $data->nama      = $request->nama;
@@ -198,7 +207,6 @@ class DataKeluargaController extends Controller
                 'tgl_lahir'  => 'required',
                 'alamat'  => 'required',
                 'no_hp'  => 'required|max:13',
-                'nik'  => 'max:17',
                 'nama_hubungan'  => 'required',
                 'hubungan'  => 'required',
                 'pekerjaan'  => 'required',
@@ -230,10 +238,6 @@ class DataKeluargaController extends Controller
         } else {
               
         }
-        if ($request->nik) {
-            $no_induk = $request->nik;
-        } else {
-        }
 
         $data = AnggotaKeluarga::find($id);
         $data->nama      = $request->nama;
@@ -242,10 +246,6 @@ class DataKeluargaController extends Controller
         $data->tanggal_lahir      = $request->tgl_lahir;
         $data->alamat      = $request->alamat;
         $data->no_hp      = $request->no_hp;
-        if ($request->nik) {
-            $data->nik      = $no_induk;
-        } else {
-        }
         $data->pekerjaan      = $request->pekerjaan;
        $data->keluarga_id      = $request->nama_hubungan;
         $data->hubungan      = $request->hubungan;
@@ -332,7 +332,7 @@ class DataKeluargaController extends Controller
     {
         $id = User::find(Auth::user()->id) ;
         $data_keluarga = AnggotaKeluarga::find($id->keluarga_id);
-        $foto = Foto::where('keluarga_id', 3)->get();
+        $foto = Foto::where('user_id', Auth::user()->id)->get();
 
         return view('admin.profile.index',compact('data_keluarga','foto'));
     }

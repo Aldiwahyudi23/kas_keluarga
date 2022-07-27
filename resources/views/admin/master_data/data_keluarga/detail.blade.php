@@ -71,7 +71,11 @@
 
                             <div class="table-responsive">
                                 <table class="table">
-                                    <img src="{{asset($data_anggota->foto)}}" alt="" width="70%" class="brand-image img-circle elevation-3 " style="display:block; margin:auto">
+                                    <a href="{{asset($data_anggota->foto)}}" data-toggle="lightbox" data-title="Foto {{ $data_anggota->nama}}" data-gallery="gallery">
+
+                                        <img src="{{asset($data_anggota->foto)}}" alt="" width="70%" class="brand-image img-circle elevation-3 " style="display:block; margin:auto">
+                                    </a>
+
                                     <a href="{{route('keluarga.edit',Crypt::encrypt($data_anggota->id))}}" class="btn btn-link btn-block btn-light"> Edit Profile</a>
 
                                     <tr>
