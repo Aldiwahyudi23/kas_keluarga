@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 $anggaran_pinjaman = DB::table('anggarans')->find(3); // mengambil data anggaraan
-$jumlah_pemasukan = DB::table('pemasukans')
+$jumlah_pemasukan = DB::table('pemasukans')->where('kategori','Kas')
     ->sum('pemasukans.jumlah');
 $jumlah_pemasukan_asli = $jumlah_pemasukan / 2; //Jumlah semua pemasukan
 $pinjams = $jumlah_pemasukan_asli * 90 / 100; // Menghitung Jumlah anggaran pinjaman dari semua pemasukan

@@ -206,7 +206,7 @@ class DataKeluargaController extends Controller
                 'tmp_lahir'  => 'required',
                 'tgl_lahir'  => 'required',
                 'alamat'  => 'required',
-                'no_hp'  => 'required|max:13',
+                'no_hp'  => 'max:13',
                 'nama_hubungan'  => 'required',
                 'hubungan'  => 'required',
                 'pekerjaan'  => 'required',
@@ -239,6 +239,18 @@ class DataKeluargaController extends Controller
               
         }
 
+        if ($request->anak_ke) {
+            $no_induk = 50000 . $request->nama_hubungan . $request->anak_ke;
+        } else {
+            if ($request->hubungan == "Suami") {
+                $no_induk = 50000 .  $request->nama_hubungan . 0;
+            }
+            if ($request->hubungan == "Istri") {
+                $no_induk = 50000 . $request->nama_hubungan . 00;
+            }
+        }
+
+
         $data = AnggotaKeluarga::find($id);
         $data->nama      = $request->nama;
         $data->jenis_kelamin      = $request->jk;
@@ -246,6 +258,7 @@ class DataKeluargaController extends Controller
         $data->tanggal_lahir      = $request->tgl_lahir;
         $data->alamat      = $request->alamat;
         $data->no_hp      = $request->no_hp;
+        $data->nik      = $no_induk;
         $data->pekerjaan      = $request->pekerjaan;
        $data->keluarga_id      = $request->nama_hubungan;
         $data->hubungan      = $request->hubungan;

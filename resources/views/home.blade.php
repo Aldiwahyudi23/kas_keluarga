@@ -97,132 +97,59 @@ $penarikan = $keperluan + $sekolah + $nikah;
 
 ?>
 @if (Auth::user()->program1 == "Kas")
-@if(Auth::user()->role == "Admin" || Auth::user()->role == "Sekertaris" || Auth::user()->role == "Bendahara" || Auth::user()->role == "Ketua")
-<div class="col-md-12">
-
-    <section class="content card" style="padding: 15px 15px 0px 15px ">
-        <div class="box">
-            <div class="row">
-                <div class="col">
-                    <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan Uang nu terkumpul</h4>
-                    <hr>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-1 pr-1">
-                    <a href="javascript:void(0)" class="product-title">Saldo ATM</a>
-                    <h5>{{"Rp" . number_format($jumlah_ATM ,2,',','.')}}</h5>
-                    <p>Saldo ATM, saldo anu aya tina tabungan kas keluarga. Jumlah <b>saldo ATM</b> di tambah artos nu masih di <b>bendahara</b> kedah <b>sami</b> sareng jumlah <b>SALDO tiap Laporan</b> </p>
-                    <hr />
-                </ul>
-                <ul class="products-list product-list-in-card pl-1 pr-1">
-                    <a href="javascript:void(0)" class="product-title">Uang dibendahara nu teu acan di TF</a>
-                    <h5>{{"Rp" . number_format( $jumlah_uang_cash - $jumlah_pemasukan_setor,2,',','.')}}</h5>
-                    <p>Artos nu teu acan di setor tunai keun ku bendahara, sareng nu masih di pegang ku bendahara atanapi sekertaris</p>
-                    <hr />
-                </ul>
-            </div>
-        </div>
-    </section>
-</div>
 <div class="row">
-    <div class="col-md-5">
+@if(Auth::user()->role == "Admin" || Auth::user()->role == "Sekertaris" || Auth::user()->role == "Bendahara" || Auth::user()->role == "Ketua")
+    <div class="col-md-12">
+
         <section class="content card" style="padding: 15px 15px 0px 15px ">
             <div class="box">
                 <div class="row">
                     <div class="col">
-                        <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan KAS</h4>
+                        <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan Uang nu terkumpul</h4>
                         <hr>
                     </div>
                 </div>
                 <div class="card-body p-0">
-
                     <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <a href="/pemasukan/detail" class="product-title">Jumlah Pemasukan Kas</a>
-                        <h5>{{ "Rp " . number_format($jumlah_pemasukan,2,',','.') }}</h5>
-                        <p>Jumlah sadayana artos pemasukan uang kas nu terkumpul ti awal sareng dugi ayeuna</p>
-                        <hr>
-                    </ul>
-
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <a href="/pengeluaran/detail" class="product-title">Jumlah Pengeluaran Kas</a>
-                        <h5>{{ "Rp " . number_format($jumlah_pengeluaran- $pengeluaran_pinjaman,2,',','.') }}</h5>
-                        <p> Jumlah sadayana pengluaran sesuai data anggaran, kecuali data pinjaman tidak termasuk pengluaran.</p>
-                        <hr>
-                    </ul>
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <b> <a href="javascript:void(0)" class="product-title">Saldo Kas</a>
-                            <h4>{{"Rp" . number_format( $saldo + $bayar_pinjam,2,',','.')}}</h4>
-                            <p> Jumlah Total saldo anu aya di bendahara atawa sisa tina pengeluaran termasuk data pinjaman. </p>
-                            <hr />
-                        </b>
-                    </ul>
-
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <a href="javascript:void(0)" class="product-title">Uang nu di pinjem</a>
-                        <h5>{{"Rp" . number_format( $pengeluaran_pinjaman,2,',','.')}}</h5>
+                        <a href="javascript:void(0)" class="product-title">Saldo ATM</a>
+                        <h5>{{"Rp" . number_format($jumlah_ATM ,2,',','.')}}</h5>
+                        <p>Saldo ATM, saldo anu aya tina tabungan kas keluarga. Jumlah <b>saldo ATM</b> di tambah artos nu masih di <b>bendahara</b> kedah <b>sami</b> sareng jumlah <b>SALDO tiap Laporan</b> </p>
                         <hr />
                     </ul>
-
+                    <ul class="products-list product-list-in-card pl-1 pr-1">
+                        <a href="javascript:void(0)" class="product-title">Uang dibendahara nu teu acan di TF</a>
+                        <h5>{{"Rp" . number_format( $jumlah_uang_cash - $jumlah_pemasukan_setor,2,',','.')}}</h5>
+                        <p>Artos nu teu acan di setor tunai keun ku bendahara, sareng nu masih di pegang ku bendahara atanapi sekertaris</p>
+                        <hr />
+                    </ul>
                 </div>
             </div>
-
         </section>
     </div>
-    <div class="col-md-4">
-        <section class="content card" style="padding: 15px 15px 0px 15px ">
-            <div class="box">
-                <div class="row">
-                    <div class="col">
-                        <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan TABUNGAN</h4>
-                        <hr>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <a href="/pemasukan/detail" class="product-title">Jumlah Pemasukan Tabungan</a>
-                        <h5>{{ "Rp " . number_format($jumlah_tabungan,2,',','.') }}</h5>
-                        <p>Jumlah sadayana artos tabungan anggota</p>
-                        <hr>
-                    </ul>
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <a href="/pengeluaran/detail" class="product-title">Jumlah Penarikan Tabungan</a>
-                        <h5>{{ "Rp " . number_format($penarikan,2,',','.') }}</h5>
-                        <p> Jumlah sadayana Penarikan tabungan anggota.</p>
-                        <hr>
-                    </ul>
-                    <ul class="products-list product-list-in-card pl-1 pr-1">
-                        <b> <a href="javascript:void(0)" class="product-title">Jumlah sisa Tabungan</a>
-                            <h4>{{"Rp" . number_format( $jumlah_tabungan - $penarikan,2,',','.')}}</h4>
-                            <p> Jumlah sisa tabungan anggota, sisa tina penarikan. </p>
-                            <hr />
-                        </b>
-                    </ul>
-
-
-                </div>
-            </div>
-
-        </section>
-    </div>
-    @endif
-    <!-- lAPORAN DANA KAS -->
-    @if (Auth::user()->role == "Anggota" )
-    <div class="col-md-12">
-        @else
-        <div class="col-md-3">
-            @endif
+        <div class="col-md-5">
             <section class="content card" style="padding: 15px 15px 0px 15px ">
                 <div class="box">
                     <div class="row">
                         <div class="col">
-                            <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Dana Anggaran KAS</h4>
+                            <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan KAS</h4>
                             <hr>
                         </div>
                     </div>
-
                     <div class="card-body p-0">
+
+                        <ul class="products-list product-list-in-card pl-1 pr-1">
+                            <a href="/pemasukan/detail" class="product-title">Jumlah Pemasukan Kas</a>
+                            <h5>{{ "Rp " . number_format($jumlah_pemasukan,2,',','.') }}</h5>
+                            <p>Jumlah sadayana artos pemasukan uang kas nu terkumpul ti awal sareng dugi ayeuna</p>
+                            <hr>
+                        </ul>
+
+                        <ul class="products-list product-list-in-card pl-1 pr-1">
+                            <a href="/pengeluaran/detail" class="product-title">Jumlah Pengeluaran Kas</a>
+                            <h5>{{ "Rp " . number_format($jumlah_pengeluaran- $pengeluaran_pinjaman,2,',','.') }}</h5>
+                            <p> Jumlah sadayana pengluaran sesuai data anggaran, kecuali data pinjaman tidak termasuk pengluaran.</p>
+                            <hr>
+                        </ul>
                         <ul class="products-list product-list-in-card pl-1 pr-1">
                             <b> <a href="javascript:void(0)" class="product-title">Saldo Kas</a>
                                 <h4>{{"Rp" . number_format( $saldo + $bayar_pinjam,2,',','.')}}</h4>
@@ -230,84 +157,159 @@ $penarikan = $keperluan + $sekolah + $nikah;
                                 <hr />
                             </b>
                         </ul>
+
                         <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/anggaran/1/detail" class="product-title">Jumlah Dana Darurat</a>
-                            <h5>{{ "Rp " . number_format($darurat-$pengeluaran_darurat ,2,',','.') }}</h5>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Darurat nu tos ka angge </a>
-                            <h7>{{ "Rp " . number_format($pengeluaran_darurat ,2,',','.') }}</h7>
-                            <hr>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/anggaran/2/detail" class="product-title">Jumlah Dana Amal</a>
-                            <h5>{{ "Rp " . number_format($amal-$pengeluaran_amal,2,',','.') }}</h5>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Amal nu tos ka angge </a>
-                            <h7>{{ "Rp " . number_format($pengeluaran_amal ,2,',','.') }}</h7>
-                            <hr>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/anggaran/4/detail" class="product-title">Jumlah dana KAS</a>
-                            <h5>{{"Rp" . number_format($kas-$pengeluaran_kas,2,',','.')}}</h5>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Kas nu tos ka angge </a>
-                            <h7>{{ "Rp " . number_format($pengeluaran_kas ,2,',','.') }}</h7>
-                            <hr>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/anggaran/3/detail" class="product-title">Jumlah Dana Pinjam</a>
-                            <h5>{{"Rp" . number_format($pinjam-$pengeluaran_pinjaman,2,',','.')}}</h5>
-                        </ul>
-                        <ul class="products-list product-list-in-card pl-1 pr-1">
-                            <a href="/pengluaran/pinjam/anggota" class="product-title">Uang nu di pinjem</a>
-                            <h7>{{"Rp" . number_format($pengeluaran_pinjaman,2,',','.')}}</h7>
+                            <a href="javascript:void(0)" class="product-title">Uang nu di pinjem</a>
+                            <h5>{{"Rp" . number_format( $pengeluaran_pinjaman,2,',','.')}}</h5>
                             <hr />
                         </ul>
+
                     </div>
                 </div>
+
             </section>
         </div>
-        <!-- rIWAYAT LOGIN -->
-    </div>
-    @endif
-    <div class="col-md-3">
-        <section class="content card" style="padding: 10px 10px 10px 10px ">
-            <div class="box">
-                <div class="row">
-                    <div class="col">
-                        <h4><i class="nav-icon fas fa-user-tag my-0 btn-sm-1"></i> Riwayat Login</h4>
-                        <hr>
+        <div class="col-md-4">
+            <section class="content card" style="padding: 15px 15px 0px 15px ">
+                <div class="box">
+                    <div class="row">
+                        <div class="col">
+                            <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Laporan TABUNGAN</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+
+                        <ul class="products-list product-list-in-card pl-1 pr-1">
+                            <a href="/pemasukan/detail" class="product-title">Jumlah Pemasukan Tabungan</a>
+                            <h5>{{ "Rp " . number_format($jumlah_tabungan,2,',','.') }}</h5>
+                            <p>Jumlah sadayana artos tabungan anggota</p>
+                            <hr>
+                        </ul>
+                        <ul class="products-list product-list-in-card pl-1 pr-1">
+                            <a href="/pengeluaran/detail" class="product-title">Jumlah Penarikan Tabungan</a>
+                            <h5>{{ "Rp " . number_format($penarikan,2,',','.') }}</h5>
+                            <p> Jumlah sadayana Penarikan tabungan anggota.</p>
+                            <hr>
+                        </ul>
+                        <ul class="products-list product-list-in-card pl-1 pr-1">
+                            <b> <a href="javascript:void(0)" class="product-title">Jumlah sisa Tabungan</a>
+                                <h4>{{"Rp" . number_format( $jumlah_tabungan - $penarikan,2,',','.')}}</h4>
+                                <p> Jumlah sisa tabungan anggota, sisa tina penarikan. </p>
+                                <hr />
+                            </b>
+                        </ul>
+
+
                     </div>
                 </div>
-                <div class="card-body p-0">
-                    <ul class="products-list product-list-in-card pl-2 pr-2">
-                        @foreach($data_login as $user_login)
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="{{ asset($user_login->foto) }}" data-toggle="lightbox" data-title="Foto {{ Auth::user()->name }}" data-gallery="gallery">
 
-                                    <img src="{{ asset($user_login->foto) }}" alt="Product Image" class="img-size-50 img-circle">
-                                </a>
+            </section>
+        </div>
+        @endif
+        <!-- lAPORAN DANA KAS -->
+        @if (Auth::user()->role == "Anggota" )
+     
+            <div class="col-md-12">
+                @else
+                <div class="col-md-3">
+                    @endif
+                    <section class="content card" style="padding: 15px 15px 0px 15px ">
+                        <div class="box">
+                            <div class="row">
+                                <div class="col">
+                                    <h4><i class="nav-icon fas fa-dollar-sign my-0 btn-sm-1"></i> Dana Anggaran KAS</h4>
+                                    <hr>
+                                </div>
                             </div>
-                            <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">{{$user_login->name}} </a>
-                                @if(Cache::has('user-is-online-' .$user_login->id))
-                                <span class="text-success badge float-right">Online</span>
-                                @else
-                                <span class="text-secondary badge float-right">Offline</span>
-                                @endif <br>
-                                <span class="badge float-right"><i class="far fa-clock"></i> {{Carbon\Carbon::parse($user_login->last_seen)->diffForHumans()}}</span>
+
+                            <div class="card-body p-0">
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <b> <a href="javascript:void(0)" class="product-title">Saldo Kas</a>
+                                        <h4>{{"Rp" . number_format( $saldo + $bayar_pinjam,2,',','.')}}</h4>
+                                        <p> Jumlah Total saldo anu aya di bendahara atawa sisa tina pengeluaran termasuk data pinjaman. </p>
+                                        <hr />
+                                    </b>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/anggaran/1/detail" class="product-title">Jumlah Dana Darurat</a>
+                                    <h5>{{ "Rp " . number_format($darurat-$pengeluaran_darurat ,2,',','.') }}</h5>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Darurat nu tos ka angge </a>
+                                    <h7>{{ "Rp " . number_format($pengeluaran_darurat ,2,',','.') }}</h7>
+                                    <hr>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/anggaran/2/detail" class="product-title">Jumlah Dana Amal</a>
+                                    <h5>{{ "Rp " . number_format($amal-$pengeluaran_amal,2,',','.') }}</h5>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Amal nu tos ka angge </a>
+                                    <h7>{{ "Rp " . number_format($pengeluaran_amal ,2,',','.') }}</h7>
+                                    <hr>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/anggaran/4/detail" class="product-title">Jumlah dana KAS</a>
+                                    <h5>{{"Rp" . number_format($kas-$pengeluaran_kas,2,',','.')}}</h5>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/pengluaran/pinjam/anggota" class="product-title">Jumlah Dana Kas nu tos ka angge </a>
+                                    <h7>{{ "Rp " . number_format($pengeluaran_kas ,2,',','.') }}</h7>
+                                    <hr>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/anggaran/3/detail" class="product-title">Jumlah Dana Pinjam</a>
+                                    <h5>{{"Rp" . number_format($pinjam-$pengeluaran_pinjaman,2,',','.')}}</h5>
+                                </ul>
+                                <ul class="products-list product-list-in-card pl-1 pr-1">
+                                    <a href="/pengluaran/pinjam/anggota" class="product-title">Uang nu di pinjem</a>
+                                    <h7>{{"Rp" . number_format($pengeluaran_pinjaman,2,',','.')}}</h7>
+                                    <hr />
+                                </ul>
                             </div>
-                        </li>
-                        @endforeach
-                        <!-- /.item -->
-                    </ul>
+                        </div>
+                    </section>
                 </div>
+                <!-- rIWAYAT LOGIN -->
             </div>
-        </section>
-    </div>
+</div>
+            @endif
+            <div class="col-md-3">
+                <section class="content card" style="padding: 10px 10px 10px 10px ">
+                    <div class="box">
+                        <div class="row">
+                            <div class="col">
+                                <h4><i class="nav-icon fas fa-user-tag my-0 btn-sm-1"></i> Riwayat Login</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="products-list product-list-in-card pl-2 pr-2">
+                                @foreach($data_login as $user_login)
+                                <li class="item">
+                                    <div class="product-img">
+                                        <a href="{{ asset($user_login->foto) }}" data-toggle="lightbox" data-title="Foto {{ $user_login->name }}" data-gallery="gallery">
 
-    @endsection
+                                            <img src="{{ asset($user_login->foto) }}" alt="Product Image" class="img-size-50 img-circle">
+                                        </a>
+                                    </div>
+                                    <div class="product-info">
+                                        <a href="javascript:void(0)" class="product-title">{{$user_login->name}} </a>
+                                        @if(Cache::has('user-is-online-' .$user_login->id))
+                                        <span class="text-success badge float-right">Online</span>
+                                        @else
+                                        <span class="text-secondary badge float-right">Offline</span>
+                                        @endif <br>
+                                        <span class="badge float-right"><i class="far fa-clock"></i> {{Carbon\Carbon::parse($user_login->last_seen)->diffForHumans()}}</span>
+                                    </div>
+                                </li>
+                                @endforeach
+                                <!-- /.item -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            @endsection

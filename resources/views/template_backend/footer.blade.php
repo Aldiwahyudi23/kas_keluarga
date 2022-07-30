@@ -24,7 +24,7 @@
             <div class="col-3">
                 <center>
                     <a href="/profile"><img src="{{ asset( Auth::user()->foto) }}" width="45px" height="45px" alt="Saya" class="brand-image img-circle elevation-3">
-                     </a>
+                    </a>
                 </center>
             </div>
 
@@ -234,19 +234,28 @@
     })
 </script>
 
+<?php
+
+use App\Models\Pengajuan;
+
+$jumlah_data_pengajuan = Pengajuan::all()->count();
+
+?>
 @yield('script')
 
-<!-- @if (count($errors)>0)
-    @foreach ($errors->all() as $error)
-        <script>
-            toastr.error("{{ $error }}");
-        </script>
-    @endforeach
-@endif -->
-@if (Session::has('success'))
+@if (count($errors)>0)
+@foreach ($errors->all() as $error)
 <script>
-    toastr.success("{{ Session('success') }}");
+    toastr.error("{{ $error }}");
 </script>
+@endforeach
+@endif
+@if (Auth::user()->role == 'Bendahara' || Auth::user()->role == 'Admin' )
+@if ($jumlah_data_pengajuan >= 1 )
+<script>
+    toastr.warning(" Aya Pengajuan nu kedah di konfirmasi ");
+</script>
+@endif
 @endif
 @if (Session::has('warning'))
 <script>
@@ -258,11 +267,11 @@
     toastr.info("{{ Session('info') }}");
 </script>
 @endif
-<!-- @if (Session::has('error'))
-    <script>
-        toastr.error("{{ Session('error') }}");
-    </script>
-@endif -->
+@if (Session::has('error'))
+<script>
+    toastr.error("{{ Session('error') }}");
+</script>
+@endif
 
 </body>
 
